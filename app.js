@@ -322,7 +322,7 @@
   var sOverlay=$('searchOverlay'),sInput=$('searchInput'),sResults=$('searchResults'),
       sToggle=$('searchToggle'),sClear=$('searchClear');
   var sActiveIdx=-1, sCurrent=[];
-  function tagClass(g){return g==='FAQ'?'faq':(g==='Service'?'digi':'');}
+  function tagClass(g){return g==='FAQ'?'sr-faq':(g==='Service'?'sr-svc':'');}
   function renderResults(list,terms){
     sCurrent=list; sActiveIdx=-1;
     if(!list.length){
