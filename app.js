@@ -104,42 +104,48 @@
   if($('emClose'))$('emClose').addEventListener('click',closePopovers);
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopovers();});
 
+  var EMAIL_RE=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  var MOBILE_RE=/^\d{6,10}$/;
+  function fval(id){var el=$(id);return el?(el.value||'').trim():'';}
+  /* restrict every mobile field to digits only, max 10 */
+  ['waMobile','emMobile','cf-phone'].forEach(function(id){
+    var el=$(id);
+    if(el)el.addEventListener('input',function(){this.value=this.value.replace(/\D/g,'').slice(0,10);});
+  });
   function readForm(prefix){
     return {
-      name:(($(prefix+'Name')||{}).value||'').trim(),
-      email:(($(prefix+'Email')||{}).value||'').trim(),
-      mobile:(($(prefix+'Mobile')||{}).value||'').trim(),
-      company:(($(prefix+'Company')||{}).value||'').trim(),
-      interest:(($(prefix+'Interest')||{}).value||'').trim(),
-      message:(($(prefix+'Message')||{}).value||'').trim()
+      name:fval(prefix+'Name'), email:fval(prefix+'Email'),
+      cc:fval(prefix+'Cc')||'+61', mobile:fval(prefix+'Mobile'),
+      company:fval(prefix+'Company'), interest:fval(prefix+'Interest'),
+      message:fval(prefix+'Message')
     };
   }
-  function validate(prefix,d){
-    var err=$(prefix+'Err');
-    if(!d.name||!d.message){if(err)err.classList.add('show');return false;}
-    if(err)err.classList.remove('show');return true;
+  function leadError(d){
+    if(!d.name)return 'Please enter the contact person name.';
+    if(!EMAIL_RE.test(d.email))return 'Please enter a valid email address.';
+    if(!MOBILE_RE.test(d.mobile))return 'Enter a valid mobile number (digits only, up to 10).';
+    return '';
   }
-  function buildLines(d){
-    var L=['Hello INFITEX Global Advisory,','','Name: '+d.name];
-    if(d.email)L.push('Email: '+d.email);
-    if(d.mobile)L.push('Mobile: '+d.mobile);
-    if(d.company)L.push('Company: '+d.company);
-    L.push('Interested in: '+d.interest);
-    L.push('Message: '+d.message);
+  function showLeadErr(prefix,msg){var e=$(prefix+'Err');if(e){if(msg)e.textContent=msg;e.classList.toggle('show',!!msg);}}
+  function buildLeadLines(d){
+    var intro='This is '+d.name+(d.company?(', From '+d.company):'')+'. I would like to enquire about '+d.interest+'. My contact details are as below.';
+    var L=['Hi Infitex Team,',intro,'Email : '+d.email,'Mobile : '+d.cc+' '+d.mobile];
+    if(d.message){L.push('');L.push(d.message);}
     return L;
   }
   if($('waSend'))$('waSend').addEventListener('click',function(){
-    var d=readForm('wa'); if(!validate('wa',d))return;
-    var text=buildLines(d).join('\n');
-    var url='https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent(text);
-    window.open(url,'_blank','noopener'); closePopovers();
+    var d=readForm('wa'),err=leadError(d);
+    if(err){showLeadErr('wa',err);return;} showLeadErr('wa','');
+    var text=buildLeadLines(d).join('\n');
+    window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent(text),'_blank','noopener'); closePopovers();
   });
   if($('emSend'))$('emSend').addEventListener('click',function(){
-    var d=readForm('em'); if(!validate('em',d))return;
-    var subject='Website enquiry — '+(d.interest||'INFITEX')+(d.company?(' ('+d.company+')'):'');
-    var body=buildLines(d).join('\r\n');
-    var url='mailto:'+CONFIG.email+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-    window.location.href=url; closePopovers();
+    var d=readForm('em'),err=leadError(d);
+    if(err){showLeadErr('em',err);return;} showLeadErr('em','');
+    var subject='Enquiry from '+d.name+(d.company?(' \u2014 '+d.company):'');
+    var body=buildLeadLines(d).join('\r\n');
+    window.location.href='mailto:'+CONFIG.email+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    closePopovers();
   });
 
   /* ---- 8. Main contact form (Web3Forms) ---- */
@@ -149,16 +155,18 @@
   if(form){
     form.addEventListener('submit',function(e){
       e.preventDefault();
-      var name=form.name.value.trim(),email=form.email.value.trim(),msg=form.message.value.trim();
-      if(!name||!email||!msg){showMsg(formMsg,'err','Please complete your name, email and message.');return;}
-      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){showMsg(formMsg,'err','Please enter a valid email address.');return;}
+      var name=fval('cf-name'),email=fval('cf-email'),cc=fval('cf-cc')||'+61',phone=fval('cf-phone'),
+          company=fval('cf-company'),interest=fval('cf-interest'),msg=fval('cf-msg');
+      if(!name){showMsg(formMsg,'err','Please enter the contact person name.');return;}
+      if(!EMAIL_RE.test(email)){showMsg(formMsg,'err','Please enter a valid email address.');return;}
+      if(!MOBILE_RE.test(phone)){showMsg(formMsg,'err','Enter a valid mobile number (digits only, up to 10).');return;}
+      if(!msg){showMsg(formMsg,'err','Please add a short message.');return;}
       if(WEB3FORMS_KEY==="YOUR_WEB3FORMS_ACCESS_KEY"){
         showMsg(formMsg,'ok','Thanks '+name.split(' ')[0]+'! (Demo mode — add your free Web3Forms key in app.js to receive these by email.)');form.reset();return;
       }
       var btn=form.querySelector('button[type=submit]');btn.disabled=true;var label=btn.innerHTML;btn.textContent='Sending…';
       var data={access_key:WEB3FORMS_KEY,subject:'New enquiry — INFITEX website',name:name,email:email,
-        phone:form.phone?form.phone.value:'',company:form.company?form.company.value:'',
-        interest:form.interest?form.interest.value:'',message:msg};
+        mobile:cc+' '+phone,company:company,interest:interest,message:msg};
       fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)})
       .then(function(r){return r.json();}).then(function(res){
         if(res.success){showMsg(formMsg,'ok','Thanks '+name.split(' ')[0]+'! Your message has been sent — we\'ll reply within one business day.');form.reset();}

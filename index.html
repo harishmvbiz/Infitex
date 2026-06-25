@@ -126,7 +126,7 @@
 <section style="padding-top:clamp(26px,4vw,46px);padding-bottom:0">
   <div class="wrap reveal">
     <p class="tools-lead">We work natively in your stack</p>
-    <div class="tools-strip"><span>Xero Practice Manager</span><span>Xero</span><span>MYOB</span><span>QuickBooks</span><span>Reckon</span><span>FYI Docs</span><span>Dext</span><span>Hubdoc</span><span>BGL / Class (SMSF)</span><span>Karbon</span></div>
+    <div class="tools-strip"><span class="tool"><i class="tlogo" style="background:#0E9BC7" aria-hidden="true">XPM</i>Xero Practice Manager</span><span class="tool"><i class="tlogo" style="background:#13B5EA" aria-hidden="true">X</i>Xero</span><span class="tool"><i class="tlogo" style="background:#6100A5" aria-hidden="true">M</i>MYOB</span><span class="tool"><i class="tlogo" style="background:#2CA01C" aria-hidden="true">QB</i>QuickBooks</span><span class="tool"><i class="tlogo" style="background:#00A0DF" aria-hidden="true">R</i>Reckon</span><span class="tool"><i class="tlogo" style="background:#0FA9A0" aria-hidden="true">FYI</i>FYI Docs</span><span class="tool"><i class="tlogo" style="background:#14C38E" aria-hidden="true">D</i>Dext</span><span class="tool"><i class="tlogo" style="background:#2D6CDF" aria-hidden="true">H</i>Hubdoc</span><span class="tool"><i class="tlogo" style="background:#C0392B" aria-hidden="true">BGL</i>BGL / Class (SMSF)</span><span class="tool"><i class="tlogo" style="background:#5B4BDB" aria-hidden="true">K</i>Karbon</span></div>
   </div>
 </section>
 
@@ -352,9 +352,9 @@
     </div>
     <div class="contact-grid">
       <form class="form reveal" id="contactForm" novalidate>
-        <div class="field"><label for="cf-name">Full name</label><input type="text" id="cf-name" name="name" autocomplete="name" required placeholder="Your name" /></div>
+        <div class="field"><label for="cf-name">Contact person name</label><input type="text" id="cf-name" name="name" autocomplete="name" required placeholder="Your name" /></div>
         <div class="field"><label for="cf-email">Email</label><input type="email" id="cf-email" name="email" autocomplete="email" required placeholder="you@yourfirm.com" /></div>
-        <div class="field"><label for="cf-phone">Mobile / phone</label><input type="tel" id="cf-phone" name="phone" autocomplete="tel" placeholder="Your contact number" /></div>
+        <div class="field"><label for="cf-phone">Mobile / phone</label><div class="phone-row"><select id="cf-cc" name="cc" aria-label="Country code"><option value="+61" selected>+61 Australia</option><option value="+91">+91 India</option><option value="+64">+64 New Zealand</option><option value="+44">+44 United Kingdom</option><option value="+1">+1 USA / Canada</option><option value="+971">+971 UAE</option><option value="+65">+65 Singapore</option><option value="+353">+353 Ireland</option><option value="+27">+27 South Africa</option><option value="+60">+60 Malaysia</option><option value="+63">+63 Philippines</option><option value="+880">+880 Bangladesh</option><option value="+94">+94 Sri Lanka</option><option value="+977">+977 Nepal</option></select><input type="tel" id="cf-phone" name="phone" inputmode="numeric" maxlength="10" autocomplete="tel" placeholder="10-digit number" /></div></div>
         <div class="field"><label for="cf-company">Practice / business name <span style="color:var(--ink-faint);font-weight:400">(optional)</span></label><input type="text" id="cf-company" name="company" placeholder="Your firm" /></div>
         <div class="field"><label for="cf-interest">I'm interested in</label>
           <select id="cf-interest" name="interest">
@@ -421,11 +421,11 @@
         <a href="digitech.html">Website design</a><a href="digitech.html">Domains &amp; hosting</a><a href="digitech.html">SEO</a><a href="digitech.html">Maintenance</a>
       </div>
       <div class="foot-col"><h5>Company</h5>
-        <a href="#how">How it works</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+        <a href="#how">How it works</a><a href="#about">About</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="sitemap.html">Sitemap</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© <span id="yr"></span> INFITEX Global Advisory. All rights reserved. · <a href="#" style="color:rgba(255,255,255,.7)">Privacy</a></span>
+      <span>© <span id="yr"></span> INFITEX Global Advisory. All rights reserved. · <a href="privacy.html" style="color:rgba(255,255,255,.7)">Privacy</a> · <a href="terms.html" style="color:rgba(255,255,255,.7)">Terms</a> · <a href="sitemap.html" style="color:rgba(255,255,255,.7)">Sitemap</a></span>
       <div class="social">
         <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.3 18.3V10H5.7v8.3zM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm11.3 9.5v-4.6c0-2.4-1.3-3.6-3-3.6a2.6 2.6 0 0 0-2.4 1.3V10H10.3c0 .7 0 8.3 0 8.3H13v-4.6c0-.2 0-.5.1-.7a1.4 1.4 0 0 1 1.3-1c1 0 1.3.7 1.3 1.8v4.5z"/></svg></a>
         <a href="mailto:hello@infitexglobal.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
@@ -445,12 +445,12 @@
   <div class="pop-head"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.2 4.6 1.9.8 2.7.9 3.6.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg><b>Message us on WhatsApp</b><button class="pop-close" id="waClose" aria-label="Close">&times;</button></div>
   <div class="pop-body">
     <p class="intro">Fill this in and we'll prepare your message, ready to send.</p>
-    <div class="field"><label for="waName">Name *</label><input id="waName" type="text" autocomplete="name" placeholder="Your name" /></div>
-    <div class="field"><label for="waEmail">Email</label><input id="waEmail" type="email" autocomplete="email" placeholder="you@example.com" /></div>
-    <div class="field"><label for="waMobile">Mobile</label><input id="waMobile" type="tel" autocomplete="tel" placeholder="Your mobile number" /></div>
+    <div class="field"><label for="waName">Contact person name *</label><input id="waName" type="text" autocomplete="name" placeholder="Your name" /></div>
+    <div class="field"><label for="waEmail">Email *</label><input id="waEmail" type="email" autocomplete="email" placeholder="you@example.com" /></div>
+    <div class="field"><label for="waMobile">Mobile *</label><div class="phone-row"><select id="waCc" aria-label="Country code"><option value="+61" selected>+61 Australia</option><option value="+91">+91 India</option><option value="+64">+64 New Zealand</option><option value="+44">+44 United Kingdom</option><option value="+1">+1 USA / Canada</option><option value="+971">+971 UAE</option><option value="+65">+65 Singapore</option><option value="+353">+353 Ireland</option><option value="+27">+27 South Africa</option><option value="+60">+60 Malaysia</option><option value="+63">+63 Philippines</option><option value="+880">+880 Bangladesh</option><option value="+94">+94 Sri Lanka</option><option value="+977">+977 Nepal</option></select><input id="waMobile" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel" placeholder="10-digit number" /></div></div>
     <div class="field"><label for="waCompany">Practice / business</label><input id="waCompany" type="text" placeholder="Optional" /></div>
     <div class="field"><label for="waInterest">Interested in</label><select id="waInterest"><option>Accounting &amp; compliance outsourcing</option><option>Digitech — website / domain / hosting</option><option>Digitech — SEO &amp; Google Business Profile</option><option>Both divisions</option><option>Something else</option></select></div>
-    <div class="field"><label for="waMessage">Message *</label><textarea id="waMessage" placeholder="A few words about what you need…"></textarea></div>
+    <div class="field"><label for="waMessage">Message</label><textarea id="waMessage" placeholder="A few words about what you need…"></textarea></div>
     <div class="perr" id="waErr">Please add your name and a short message.</div>
     <button class="btn pop-submit" id="waSend" style="background:#25D366;color:#fff">Open WhatsApp <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </div>
@@ -460,12 +460,12 @@
   <div class="pop-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><b>Email us</b><button class="pop-close" id="emClose" aria-label="Close">&times;</button></div>
   <div class="pop-body">
     <p class="intro">Fill this in and we'll prepare your message, ready to send.</p>
-    <div class="field"><label for="emName">Name *</label><input id="emName" type="text" autocomplete="name" placeholder="Your name" /></div>
-    <div class="field"><label for="emEmail">Email</label><input id="emEmail" type="email" autocomplete="email" placeholder="you@example.com" /></div>
-    <div class="field"><label for="emMobile">Mobile</label><input id="emMobile" type="tel" autocomplete="tel" placeholder="Your mobile number" /></div>
+    <div class="field"><label for="emName">Contact person name *</label><input id="emName" type="text" autocomplete="name" placeholder="Your name" /></div>
+    <div class="field"><label for="emEmail">Email *</label><input id="emEmail" type="email" autocomplete="email" placeholder="you@example.com" /></div>
+    <div class="field"><label for="emMobile">Mobile *</label><div class="phone-row"><select id="emCc" aria-label="Country code"><option value="+61" selected>+61 Australia</option><option value="+91">+91 India</option><option value="+64">+64 New Zealand</option><option value="+44">+44 United Kingdom</option><option value="+1">+1 USA / Canada</option><option value="+971">+971 UAE</option><option value="+65">+65 Singapore</option><option value="+353">+353 Ireland</option><option value="+27">+27 South Africa</option><option value="+60">+60 Malaysia</option><option value="+63">+63 Philippines</option><option value="+880">+880 Bangladesh</option><option value="+94">+94 Sri Lanka</option><option value="+977">+977 Nepal</option></select><input id="emMobile" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel" placeholder="10-digit number" /></div></div>
     <div class="field"><label for="emCompany">Practice / business</label><input id="emCompany" type="text" placeholder="Optional" /></div>
     <div class="field"><label for="emInterest">Interested in</label><select id="emInterest"><option>Accounting &amp; compliance outsourcing</option><option>Digitech — website / domain / hosting</option><option>Digitech — SEO &amp; Google Business Profile</option><option>Both divisions</option><option>Something else</option></select></div>
-    <div class="field"><label for="emMessage">Message *</label><textarea id="emMessage" placeholder="A few words about what you need…"></textarea></div>
+    <div class="field"><label for="emMessage">Message</label><textarea id="emMessage" placeholder="A few words about what you need…"></textarea></div>
     <div class="perr" id="emErr">Please add your name and a short message.</div>
     <button class="btn pop-submit" id="emSend" style="background:var(--navy);color:#fff">Open email app <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </div>
