@@ -1,0 +1,5 @@
+# robots.txt — INFITEX Global Advisory
+User-agent: *
+Allow: /
+
+Sitemap: https://www.infitexglobal.com/sitemap.xml

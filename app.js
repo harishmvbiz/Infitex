@@ -200,5 +200,22 @@
   [calcRate,calcHours,calcPct].forEach(function(el){if(el)el.addEventListener('input',recalc);});
   recalc();
 
+  /* ---- 11. Section scroller (home quick-jump) ---- */
+  var scroller=document.querySelector('.section-scroller');
+  if(scroller){
+    var ssInner=scroller.querySelector('.ss-inner');
+    var ssLinks=[].slice.call(scroller.querySelectorAll('a'));
+    var ssMap={};
+    ssLinks.forEach(function(a){var id=a.getAttribute('href').slice(1);if(document.getElementById(id))ssMap[id]=a;});
+    function ssActivate(id){
+      ssLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href').slice(1)===id);});
+      var a=ssMap[id];
+      if(a&&ssInner){var t=a.offsetLeft-(ssInner.clientWidth/2)+(a.clientWidth/2);ssInner.scrollTo({left:Math.max(0,t),behavior:'smooth'});}
+    }
+    if('IntersectionObserver' in window){
+      var ssObs=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)ssActivate(e.target.id);});},{rootMargin:'-45% 0px -50% 0px',threshold:0});
+      Object.keys(ssMap).forEach(function(id){ssObs.observe(document.getElementById(id));});
+    }
+  }
 
 })();
